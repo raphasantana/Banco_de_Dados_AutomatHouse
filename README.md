@@ -327,46 +327,6 @@ START TRANSACTION;
 COMMIT; 
 
 
- 
-#               Projeto de Banco de Dados  
-#     
-#     
-#       Alunos: Raphael Santana Galdino  
-#               Samuel de Melo Barros 
-#  
-# ////////////////////////////////////////////////////  
- 
-# -- CONSULTA 1 --  
-  
-# Retorne a lista de ID de equipamentos por nome e ID de sala.  
- 
-SELECT E.Codigo,E.Tipo, L.Nome   
-FROM Localidade as L  
-INNER JOIN Equipamento as E   
-ON L.ID_Equipamento = E.ID;  
-  
-# -- CONSULTA 2 --  
-  
-# Retorne a lista de usuários que usufruiram da Sala X (defina um nome X).  
- 
-SELECT users.Nome AS Usuario, locale.Nome,   
-    DATE_FORMAT(s.Horario, "%d-%m-%Y as %Hh:%imin") AS Data_de_Acesso  
-FROM Solicitacoes AS s  
-INNER JOIN Localidade as locale  
-ON s.ID_Equipamento = locale.ID_Equipamento   
-INNER JOIN Usuario AS users  
-ON users.ID = s.ID_Usuario  
-     AND s.statusAcesso = 'Permitido'    
-     AND locale.Nome = 'Quarto';  
-  ORDER BY s.Horario DESC;  
- 
-# -- CONSULTA 3 --  
-  
-# Retorne a lista de usuários que moram na cidade de Campina Grande.   
- 
-SELECT Count(*) AS Usuarios_Campina_Grande  
-FROM Usuario AS users  
-INNER JOIN Endereco AS addrs   
-ON users.ID_Endereco = addrs.ID AND addrs.Cidade = "Campina Grande";  
+
   
  

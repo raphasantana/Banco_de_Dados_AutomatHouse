@@ -1,3 +1,4 @@
+
 #               Projeto de Banco de Dados  
 #     
 #     
@@ -324,4 +325,3 @@ START TRANSACTION;
                 ('4','5','2017-12-22 11:00:00','Negado'),  
                 ('2','1','2017-12-22 13:00:00','Permitido');  
 COMMIT; 
-

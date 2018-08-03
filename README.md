@@ -326,6 +326,7 @@ START TRANSACTION;
                 ('2','1','2017-12-22 13:00:00','Permitido');  
 COMMIT; 
 
+
  
 #               Projeto de Banco de Dados  
 #     
@@ -367,4 +368,9 @@ SELECT Count(*) AS Usuarios_Campina_Grande
 FROM Usuario AS users  
 INNER JOIN Endereco AS addrs   
 ON users.ID_Endereco = addrs.ID AND addrs.Cidade = "Campina Grande";  
+
+=======
+
+
+  
 

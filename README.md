@@ -1,5 +1,23 @@
+#               Projeto de Banco de Dados  
+#     
+#     
+#       Alunos: Raphael Santana Galdino  
+#               Samuel de Melo Barros  
+#  
+# ////////////////////////////////////////////////////  
+    
+########################################################  
+#------------ Criação do Banco de Dados ----------------  
+########################################################  
+
+
 # Banco_de_Dados_AutomatHouse
-Trabalho do 3° estágio de informatica industrial
+# Trabalho do 3° estágio de informatica industrial
+
+########################################################  
+#------------ Criação de Tabelas ----------------  
+########################################################  
+
 CREATE TABLE Usuario (  
     ID int(32) NOT NULL AUTO_INCREMENT,
     Nome varchar(30) NOT NULL,  
@@ -75,7 +93,11 @@ CREATE TABLE Dia_Hora (
     Hora int(4) NOT NULL,  
     PRIMARY KEY (ID_Horarios,Dia,Hora)  
 );  
-  
+
+########################################################  
+#--------- Adicionando as chaves estrangeiras ---------  
+########################################################  
+
 ALTER TABLE Usuario ADD CONSTRAINT Usuario_fk0 FOREIGN KEY (ID_Endereco) REFERENCES Endereco(ID);  
   
 ALTER TABLE Usuario ADD CONSTRAINT Usuario_fk1 FOREIGN KEY (ID_Admin) REFERENCES Usuario(ID);  
@@ -96,6 +118,9 @@ ALTER TABLE Acessos ADD CONSTRAINT Acessos_fk2 FOREIGN KEY (ID_Horarios) REFEREN
   
 ALTER TABLE Dia_Hora ADD CONSTRAINT Dia_Hora_fk0 FOREIGN KEY (ID_Horarios) REFERENCES Horarios(ID);  
 
+########################################################  
+#----------------- Inserção de Usuarios ----------------  
+########################################################  
 
 START TRANSACTION;  
     INSERT INTO Endereco(Rua,Bairro,Cidade,Numero,CEP,Estado,Pais)   
@@ -149,3 +174,154 @@ START TRANSACTION;
     INSERT INTO Usuario(Nome,Email,CPF,Senha,ID_Endereco, ID_Admin)   
         VALUES ('Edgar','edgar@fuminho.com','66666666666','socorro_deus', @a, 1);  
 COMMIT;   
+
+START TRANSACTION;  
+    INSERT INTO Endereco(Rua,Bairro,Numero,Cidade,CEP,Estado,Pais)   
+        VALUES ('Rua Pedro Soares','Catole', '777','Campina Grande', '58414525',’Paraiba’,’Brasil’);     
+    SELECT @a:=ID FROM Endereco ORDER BY ID DESC LIMIT 1;      
+    INSERT INTO Usuario(Nome,Email,CPF,Senha,ID_Endereco, ID_Admin)   
+    VALUES ('Joana','Joana.eletrica@ee.ufcg.edu.br','64782938275','reprovada', @a, 0),     
+              
+COMMIT;   
+  
+  
+  
+########################################################  
+#------------ Inserção de Modulos e Locais--------------  
+########################################################  
+  
+START TRANSACTION;  
+    INSERT INTO Equipamento(Codigo, Cor, DataFabricacao, Tipo)   
+        VALUES ('0000', 'Cinza','2015-05-21', 'Despertador');    
+    SELECT @a:=ID FROM Equipamento ORDER BY ID DESC LIMIT 1;      
+    INSERT INTO Localidade(Nome, Tempo_min, ID_Equipamento)   
+        VALUES ('Quarto','5', @a);  
+COMMIT;   
+  
+START TRANSACTION;  
+    INSERT INTO Equipamento(Codigo,DataFabricacao,Tipo)   
+        VALUES ('1111','2020-10-02','Porta');     
+    SELECT @a:=ID FROM Equipamento ORDER BY ID DESC LIMIT 1;      
+    INSERT INTO Localidade(Nome, Tempo_min, ID_Equipamento)   
+        VALUES ('Banheiro','20', @a);  
+COMMIT;   
+  
+START TRANSACTION;  
+    INSERT INTO Equipamento(Codigo,Cor,DataFabricacao,Tipo)   
+        VALUES ('2222','Branco','2014-05-12','iluminacao');    
+    SELECT @a:=ID FROM Equipamento ORDER BY ID DESC LIMIT 1;      
+    INSERT INTO Localidade(Nome, Tempo_min, ID_Equipamento)   
+        VALUES ('Cozinha','120', @a);  
+COMMIT;   
+  
+START TRANSACTION;  
+    INSERT INTO Equipamento(Codigo,DataFabricacao,Tipo)   
+        VALUES ('3333','2012-12-12','Televisao');     
+    SELECT @a:=ID FROM Equipamento ORDER BY ID DESC LIMIT 1;      
+    INSERT INTO Localidade(Nome, Tempo_min, ID_Equipamento)   
+        VALUES ('Sala de Estar','50', @a);  
+COMMIT;   
+  
+START TRANSACTION;  
+    INSERT INTO Equipamento(Codigo,Cor,DataFabricacao,Tipo)   
+        VALUES ('4444','Ciano','2010-05-19','Arcondicionado');     
+    SELECT @a:=ID FROM Equipamento ORDER BY ID DESC LIMIT 1;      
+    INSERT INTO Localidade(Nome, Tempo_min, ID_Equipamento)   
+        VALUES ('Quarto','300', @a);  
+COMMIT;   
+    
+START TRANSACTION;  
+    INSERT INTO Equipamento(Codigo,Cor,DataFabricacao,Tipo)   
+        VALUES ('5555','Branco','2008-11-20','SomEstereo');     
+    SELECT @a:=ID FROM Equipamento ORDER BY ID DESC LIMIT 1;      
+    INSERT INTO Localidade(Nome, Tempo_min, ID_Equipamento)   
+        VALUES ('Terraço','60', @a);  
+COMMIT; 
+  
+  
+########################################################  
+#------------ Inserção de Horários ----------------  
+########################################################  
+START TRANSACTION;  
+    INSERT INTO Horarios  
+        VALUES();  
+    SELECT @horarioID:=ID FROM Horarios ORDER BY ID DESC LIMIT 1;      
+    INSERT INTO Dia_Hora(Dia,Hora,ID_Horarios)  
+        VALUES  ('1','3',@horarioID),               
+                ('2','6',@horarioID),                          ,             
+                ('3','3',@horarioID),                         
+                        
+COMMIT;  
+START TRANSACTION;  
+    INSERT INTO Horarios  
+        VALUES();  
+    SELECT @horarioID:=ID FROM Horarios ORDER BY ID DESC LIMIT 1;      
+    INSERT INTO Dia_Hora(Dia,Hora,ID_Horarios)  
+        VALUES  ('1','8',@horarioID),            
+                ('2','1',@horarioID),            
+                ('3','2',@horarioID),            
+              
+COMMIT;  
+ START TRANSACTION;  
+    INSERT INTO Horarios  
+        VALUES();  
+    SELECT @horarioID:=ID FROM Horarios ORDER BY ID DESC LIMIT 1;      
+    INSERT INTO Dia_Hora(Dia,Hora,ID_Horarios)  
+        VALUES  ('1','4',@horarioID),            
+                ('2','9',@horarioID),            
+                ('3','2',@horarioID),            
+              
+COMMIT;  
+START TRANSACTION;  
+    INSERT INTO Horarios  
+        VALUES();  
+    SELECT @horarioID:=ID FROM Horarios ORDER BY ID DESC LIMIT 1;      
+    INSERT INTO Dia_Hora(Dia,Hora,ID_Horarios)  
+        VALUES  ('1','6',@horarioID),            
+                ('2','3',@horarioID),            
+                ('3','3',@horarioID),            
+              
+COMMIT;  
+START TRANSACTION;  
+    INSERT INTO Horarios  
+        VALUES();  
+    SELECT @horarioID:=ID FROM Horarios ORDER BY ID DESC LIMIT 1;      
+    INSERT INTO Dia_Hora(Dia,Hora,ID_Horarios)  
+        VALUES  ('1','1',@horarioID),            
+                ('2','1',@horarioID),            
+                ('3','0',@horarioID),            
+              
+COMMIT;  
+  
+########################################################  
+#------------ Inserção de Acessos ----------------  
+########################################################  
+START TRANSACTION;  
+    INSERT INTO Acessos(ID_Usuario,ID_Local,ID_Horarios)  
+        VALUES  ('1','1','3'),            
+                ('2','1','2'),            
+                ('3','5','2'),             
+                ('4','5','3'),            
+                ('5','3','5'),            
+                ('6','3','5');                    
+COMMIT;  
+  
+  
+########################################################  
+#------------ Inserção de Solicitacoes ----------------  
+########################################################  
+START TRANSACTION;    
+    INSERT INTO Solicitacoes(ID_Usuario,ID_Equipamento,Horario,StatusAcesso)  
+        VALUES  ('1','4','2017-12-18 08:00:00','Permitido'),  
+                ('1','1','2017-12-18 15:00:00','Permitido'),  
+                ('3','5','2017-12-18 10:00:00','Negado'),  
+                ('1','3','2017-12-19 08:00:00','Permitido'),  
+                ('4','5','2017-12-20 10:00:00','Negado'),  
+                ('2','3','2017-12-21 08:00:28','Permitido'),  
+                ('1','2','2017-12-21 10:00:00','Permitido'),  
+                ('3','5','2017-12-22 09:00:00','Negado'),  
+                ('6','3','2017-12-22 10:00:00','Negado'),  
+                ('4','5','2017-12-22 11:00:00','Negado'),  
+                ('2','1','2017-12-22 13:00:00','Permitido');  
+COMMIT; 
+

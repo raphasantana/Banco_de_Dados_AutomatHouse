@@ -11,9 +11,8 @@
 #------------ Criação do Banco de Dados ----------------  
 ########################################################  
 
-
-# Banco_de_Dados_AutomatHouse
-# Trabalho do 3° estágio de informatica industrial
+CREATE database AutomatHouse;  
+use AutomatHouse;  
 
 ########################################################  
 #------------ Criação de Tabelas ----------------  
